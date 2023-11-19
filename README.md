@@ -1,7 +1,5 @@
 # go-httpbin
 
-## This is a simple Httpbin server written in golang.
+## This is a simple Httpbin server.
 
-You MUST set a env var named PORT.
-
-You SHOULD set a env var named CONTAINER.
+You MAY set a env var named CONTAINER.
