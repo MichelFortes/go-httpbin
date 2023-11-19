@@ -8,18 +8,18 @@ import (
 
 type data struct {
 	Container string
+	RemoteAdd string
 	Method    string
 	Url       string
 	Query     map[string][]string
 	Headers   map[string][]string
 }
 
-var port = os.Getenv("PORT")
-
 func handleRoot(respWriter http.ResponseWriter, req *http.Request) {
 
 	result := data{
 		Container: os.Getenv("CONTAINER"),
+		RemoteAdd: req.RemoteAddr,
 		Method:    req.Method,
 		Url:       req.URL.String(),
 		Query:     req.URL.Query(),
@@ -34,12 +34,6 @@ func handleRoot(respWriter http.ResponseWriter, req *http.Request) {
 }
 
 func main() {
-
-	if port == "" {
-		panic("Environment variable PORT not found")
-	}
-
 	http.HandleFunc("/", handleRoot)
-
-	http.ListenAndServe(":"+port, nil)
+	http.ListenAndServe(":80", nil)
 }
